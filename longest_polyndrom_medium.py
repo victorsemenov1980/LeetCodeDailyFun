@@ -31,9 +31,9 @@ Output: "a"
 '''
 '''
 Solution is to be made faster,but it is working
-Need to add up dict with plindromes
-'''
 
+'''
+'''
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         def is_polindrom(s):
@@ -88,10 +88,155 @@ print(y.longestPalindrome(s))
 # print(y.longestPalindrome(s))
 # s = "ac"
 # print(y.longestPalindrome(s))
+'''
+'''
+This one is faster
+moving centre
+Runtime: 1732 ms, faster than 39.24% of Python3 online submissions for Longest Palindromic Substring.
+Memory Usage: 14.3 MB, less than 61.31% of Python3 online submissions for Longest Palindromic Substring.
+'''
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        length=len(s)
+        output=''
+        
+        for index in range(length):
+            #odd poli
+            left=index-1
+            right=index+1
+            while left>=0 and right<length and s[left]==s[right]:
+                odd_polindrome=s[left:right+1]
+                if len(odd_polindrome)>len(output):
+                    output=odd_polindrome
+                left-=1
+                right+=1
+            #even poli
+            left=index
+            right=index+1
+            while left>=0 and right<length and s[left]==s[right]:
+                even_polindrome=s[left:right+1]
+                if len(even_polindrome)>len(output):
+                    output=even_polindrome
+                left-=1
+                right+=1
+            
+        if output=='':
+            output=s[0]
+            
+        return output
 
+y=Solution()
+s = "babad"
 
+print(y.longestPalindrome(s))
+s = "cbbd"
+print(y.longestPalindrome(s))
+s = "a"
+print(y.longestPalindrome(s))
+s = "aaaa"
+print(y.longestPalindrome(s))
 
+'''
+even faster
+Runtime: 1624 ms, faster than 40.26% of Python3 online submissions for Longest Palindromic Substring.
+Memory Usage: 14.4 MB, less than 37.39% of Python3 online submissions for Longest Palindromic Substring.
+'''
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        length=len(s)
+        output=''
+        out_length=0
+        
+        for index in range(length):
+            #odd poli
+            left=index-1
+            right=index+1
+            while left>=0 and right<length and s[left]==s[right]:
+                odd_polindrome=s[left:right+1]
+                len_poli=len(odd_polindrome)
+                if len_poli>out_length:
+                    output=odd_polindrome
+                    out_length=len_poli
+                left-=1
+                right+=1
+            #even poli
+            left=index
+            right=index+1
+            while left>=0 and right<length and s[left]==s[right]:
+                even_polindrome=s[left:right+1]
+                len_poli=len(even_polindrome)
+                if len_poli>out_length:
+                    output=even_polindrome
+                    out_length=len_poli
+                left-=1
+                right+=1
+            
+        if output=='':
+            output=s[0]
+            
+        return output
 
+y=Solution()
+s = "babad"
+
+print(y.longestPalindrome(s))
+s = "cbbd"
+print(y.longestPalindrome(s))
+s = "a"
+print(y.longestPalindrome(s))
+s = "aaaa"
+print(y.longestPalindrome(s))
+
+'''
+even faster
+Runtime: 1568 ms, faster than 40.93% of Python3 online submissions for Longest Palindromic Substring.
+Memory Usage: 14.4 MB, less than 61.31% of Python3 online submissions for Longest Palindromic Substring.
+'''
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        length=len(s)
+        output=''
+        out_length=0
+       
+        for index in range(length):
+            #odd poli
+            left=index-1
+            right=index+1
+            while left>=0 and right<length and s[left]==s[right]:
+                odd_polindrome=s[left:right+1]
+                len_poli=right-left+1
+                if len_poli>out_length:
+                    output=odd_polindrome
+                    out_length=len_poli
+                left-=1
+                right+=1
+            #even poli
+            left=index
+            right=index+1
+            while left>=0 and right<length and s[left]==s[right]:
+                even_polindrome=s[left:right+1]
+                len_poli=right-left+1
+                if len_poli>out_length:
+                    output=even_polindrome
+                    out_length=len_poli
+                left-=1
+                right+=1
+            
+        if output=='':
+            output=s[0]
+            
+        return output
+
+y=Solution()
+s = "babad"
+
+print(y.longestPalindrome(s))
+s = "cbbd"
+print(y.longestPalindrome(s))
+s = "a"
+print(y.longestPalindrome(s))
+s = "aaaa"
+print(y.longestPalindrome(s))
 
 
 
